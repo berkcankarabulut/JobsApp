@@ -1,24 +1,38 @@
-# Compiled class file
-*.class
+# Dependency directories
+/JobsApp_React/node_modules
 
-# Log file
-*.log
+# Production build
+/build
 
-# BlueJ files
-*.ctxt
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+# Runtime data
+.pnpm-debug.log*
+package-lock.json
 
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
+# OS files
+.DS_Store
+Thumbs.db
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+# Env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Test coverage
+/coverage
+
+# IDE/editor configs
+.vscode/
+.idea/
+*.swp
+
+# Misc
+/.pnp
+.pnp.js 
