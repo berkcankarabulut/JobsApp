@@ -4,10 +4,7 @@ import com.Project.App.JobsApp.model.JobPost;
 import com.Project.App.JobsApp.service.JobPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,14 +16,35 @@ public class JobRestController {
     private JobPostService jobPostService;
 
 
-    @PostMapping("handleForm")
-    public boolean handleForm(JobPost jobPost) {
+    @PostMapping("jobPosts")
+    public JobPost handleForm(@RequestBody JobPost jobPost) {
         jobPostService.addJob(jobPost);
-        return true;
+        return jobPostService.getJob(jobPost.getPostId());
     }
 
     @GetMapping("jobPosts")
-    public List<JobPost> viewJobs(Model m) {
+    public List<JobPost> viewJobs() {
         return jobPostService.getAllJobs();
+    }
+
+    @PutMapping("jobPosts")
+    public JobPost updateJob(@RequestBody JobPost jobPost)
+    {
+        jobPostService.updateJob(jobPost);
+        return jobPostService.getJob(jobPost.getPostId());
+    }
+
+    @DeleteMapping("jobPosts/{postId}")
+    public String deleteJob(@PathVariable int postId)
+    {
+        jobPostService.deleteJob(postId);
+        return "Deleted:"+postId;
+    }
+
+    @GetMapping("jobPosts/{postId}")
+    public JobPost getJobByID(@PathVariable int postId)
+    {
+        System.out.println(postId);
+        return jobPostService.getJob(postId);
     }
 }

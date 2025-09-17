@@ -42,4 +42,31 @@ public class JobPostRepo {
         System.out.println(jobs);
 
     }
+
+    public JobPost getJobByID(int postID) {
+        for (JobPost job : jobs) {
+            if (job.getPostId() != postID) continue;
+            return job;
+        }
+        return null;
+    }
+
+    public void updateJob(JobPost updatedJob) {
+        for (JobPost job: jobs)
+        {
+            if(job.getPostId() != updatedJob.getPostId()) continue;
+            job.setPostProfile(updatedJob.getPostProfile());
+            job.setPostDesc(updatedJob.getPostDesc());
+            job.setReqExperience(updatedJob.getReqExperience());
+            job.setPostTechStack(updatedJob.getPostTechStack());
+        }
+    }
+
+    public void deleteJob(int postId) {
+        for (JobPost job: jobs)
+        {
+            if(job.getPostId() != postId) continue;
+            jobs.remove(job);
+        }
+    }
 }
