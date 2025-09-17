@@ -13,28 +13,23 @@ public class JobPostService
     @Autowired
     public JobPostRepo repo;
 
-
-    // method to add a jobPost
     public void addJob(JobPost jobPost) {
-        repo.addJob(jobPost);
-
+        repo.save(jobPost);
     }
 
-
-    //method to return all JobPosts
     public List<JobPost> getAllJobs() {
-        return repo.getAllJobs();
+        return repo.findAll();
     }
 
     public JobPost getJob(int postID) {
-        return repo.getJobByID(postID);
+        return repo.findById(postID).orElse(new JobPost());
     }
 
     public void updateJob(JobPost jobPost) {
-        repo.updateJob(jobPost);
+        repo.save(jobPost);
     }
 
     public void deleteJob(int postId) {
-        repo.deleteJob(postId);
+        repo.deleteById(postId);
     }
 }
