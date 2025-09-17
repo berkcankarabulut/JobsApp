@@ -15,6 +15,11 @@ public class JobRestController {
     @Autowired
     private JobPostService jobPostService;
 
+    @GetMapping("jobPosts/keyword/{keyword}")
+    public List<JobPost> searchByKeyword(@PathVariable("keyword") String keyword){
+        return jobPostService.search(keyword);
+    }
+
 
     @PostMapping("jobPosts")
     public JobPost handleForm(@RequestBody JobPost jobPost) {
